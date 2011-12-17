@@ -13,3 +13,36 @@ Here are the instructions for this challenge:
 > 1. be aesthetically pleasing
 >
 > Your application should be easy to set up and should run on either Linux or Mac OS X.  It should not require any for-pay software.
+
+
+## Install & Run
+
+You must have ruby 1.9 and bundler installed.
+
+Clone the repository and install the gems
+
+    $> git clone [repo url]
+    ...
+    $> bundle install
+    ...
+
+Create and setup the database:
+
+    $> rake db:setup
+    ...
+
+Run the tests (rspec):
+
+    $> rake spec
+    ...
+
+Start the server
+
+    $> rails s
+    ...
+
+Visit the app at [http://locahost:3000](http://localhost:3000/). You will be prompted to log. Click the OpenID link and log in via your OpenID credentials. This will take you to the import form where you can choose a tab file to upload. 
+
+Choos a file and click "Import" to import the data. Assuming there are no errors in the tab file, the data will be imported and you will see the gross revenue from the imported file.
+
+> Note that if there are any data errors in the file, you will be notified which line produced the error and the import will fail.
