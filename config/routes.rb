@@ -1,7 +1,7 @@
 DataEngineering::Application.routes.draw do
 
-  resource :import, only: [:new, :create]
+  get  'import' => 'imports#new', as: :new_import
+  post 'import' => 'imports#create'
 
-  get 'import' => 'imports#redirect_to_new'
 
 end

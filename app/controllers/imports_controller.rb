@@ -21,10 +21,4 @@ class ImportsController < ApplicationController
     end
   end
 
-
-  # GET /import
-  def redirect_to_new
-    redirect_to action: :new
-  end
-
 end
