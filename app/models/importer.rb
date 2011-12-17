@@ -3,6 +3,7 @@ require 'csv'
 class Importer
   include ActiveModel::Validations
 
+  attr_reader :gross_revenue
   attr_accessor :tab_file
   validates :tab_file, presence: {message: 'is required'}
   validate :verify_tab_file, unless: 'tab_file.blank?'
@@ -17,6 +18,8 @@ class Importer
     csv = CSV.parse(file, {col_sep: "\t", headers: true})
 
     ActiveRecord::Base.transaction do
+      @gross_revenue = 0
+
       csv.each_with_index do |row,index|
         # account for the header, and the zero index
         @csv_line = index+2
@@ -45,6 +48,8 @@ class Importer
         # be abstracted to it's own model for better control and reporting.
         purchaser.save! and merchant.save! and item.save! and purchase.save!
 
+        @gross_revenue += purchase.num_items * item.price
+
       end
     end
 
@@ -52,6 +57,7 @@ class Importer
 
   rescue ActiveRecord::RecordInvalid
     errors.add(:tab_file, "has an invalid row at line #{@csv_line}")
+    @gross_revenue = nil
     false
 
   rescue ArgumentError, CSV::MalformedCSVError, Errno::ENOENT

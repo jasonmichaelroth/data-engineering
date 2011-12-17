@@ -27,6 +27,11 @@ describe Importer do
         @it.import(@file).should be_false
         @it.errors[:tab_file].should_not be_empty
       end
+
+      it "has no gross revenue" do
+        @it.import(@file).should be_false
+        @it.gross_revenue.should be_nil
+      end
     end
 
     context "with an invalid file (e.g. an image)" do
@@ -45,6 +50,11 @@ describe Importer do
         Merchant.count.should be_zero
         Item.count.should be_zero
         Purchase.count.should be_zero
+      end
+
+      it "has no gross revenue" do
+        @it.import(@file).should be_false
+        @it.gross_revenue.should be_nil
       end
     end
 
@@ -68,6 +78,11 @@ describe Importer do
         Item.count.should be_zero
         Purchase.count.should be_zero
       end
+
+      it "has no gross revenue" do
+        @it.import(@file).should be_false
+        @it.gross_revenue.should be_nil
+      end
     end
 
     context "with a valid file with good data" do
@@ -85,6 +100,11 @@ describe Importer do
         Merchant.count.should_not be_zero
         Item.count.should_not be_zero
         Purchase.count.should_not be_zero
+      end
+
+      it "knows the gross revenue" do
+        @it.import(@file).should be_true
+        @it.gross_revenue.should eq 95
       end
     end
 

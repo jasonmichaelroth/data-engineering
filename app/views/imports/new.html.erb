@@ -8,6 +8,10 @@
     </ul>
   <% end -%>
 
+  <% if flash[:gross_revenue] -%>
+    <p><em><%= t('import.revenue', gross_revenue: number_to_currency(flash[:gross_revenue], precision: 0)) %></em></p>
+  <% end -%>
+
   <p>
     <%= label_tag :tab_file, "Choose a tab-delimitated file" %>
     <%= file_field_tag :tab_file %>

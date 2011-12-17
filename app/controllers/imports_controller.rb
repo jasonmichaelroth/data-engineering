@@ -12,6 +12,7 @@ class ImportsController < ApplicationController
     tab_file_path = params[:tab_file].respond_to?(:path) ? params[:tab_file].path : nil
 
     if @importer.import(tab_file_path)
+      flash[:gross_revenue] = @importer.gross_revenue
       redirect_to new_import_path,
         notice: t('import.success'),
         status: :see_other

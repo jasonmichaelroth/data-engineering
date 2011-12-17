@@ -6,3 +6,4 @@ en:
 
   import:
     success: "The data has been imported successfully."
+    revenue: "The import's gross revenue was %{gross_revenue}"

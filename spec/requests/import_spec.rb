@@ -12,6 +12,7 @@ describe "uploading a file" do
     click_button 'Import'
 
     page.should have_content "success"
+    page.should have_content "gross revenue was $95"
 
     # Verify the data from the fixture tab file
 
