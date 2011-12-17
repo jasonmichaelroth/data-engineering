@@ -1,6 +1,6 @@
 class ImportsController < ApplicationController
 
-  # # GET /import/new
+  # GET /import/new
   def new
     @importer = Importer.new
   end
@@ -19,6 +19,12 @@ class ImportsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+
+  # GET /import
+  def redirect_to_new
+    redirect_to action: :new
   end
 
 end
