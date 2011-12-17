@@ -9,11 +9,12 @@
   <% end -%>
 
   <% if flash[:gross_revenue] -%>
+    <%# A presenter might be useful right about now. %>
     <p><em><%= t('import.revenue', gross_revenue: number_to_currency(flash[:gross_revenue], precision: 0)) %></em></p>
   <% end -%>
 
   <p>
-    <%= label_tag :tab_file, "Choose a tab-delimitated file" %>
+    <%= label_tag :tab_file, t('import.fields.tab_file') %>
     <%= file_field_tag :tab_file %>
   </p>
 
