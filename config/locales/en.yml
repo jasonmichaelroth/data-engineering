@@ -10,3 +10,8 @@ en:
 
     fields:
       tab_file: "Choose a tab-delimitated file"
+
+  authentication:
+    login: "You have been logged in."
+    logout: "You have been logged out."
+    required: "You must be logged in."

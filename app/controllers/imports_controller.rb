@@ -1,5 +1,7 @@
 class ImportsController < ApplicationController
 
+  before_filter :display_login_unless_authenticated
+
   # GET /import/new
   def new
     @importer = Importer.new
@@ -18,6 +20,16 @@ class ImportsController < ApplicationController
         status: :see_other
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+
+  private
+
+  def display_login_unless_authenticated
+    unless signed_in?
+      flash.now.alert = t('authentication.required')
+      render 'sessions/new', status: :unauthorized
     end
   end
 
