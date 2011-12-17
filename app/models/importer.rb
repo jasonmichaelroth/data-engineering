@@ -4,7 +4,7 @@ class Importer
   include ActiveModel::Validations
 
   attr_accessor :tab_file
-  validates :tab_file, presence: true
+  validates :tab_file, presence: {message: 'is required'}
   validate :verify_tab_file, unless: 'tab_file.blank?'
 
   def import(file)

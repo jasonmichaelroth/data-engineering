@@ -1,0 +1,18 @@
+<%= form_tag import_path, method: :post, multipart: true do -%>
+
+  <% if @importer.errors.any? -%>
+    <ul class="errors">
+      <% @importer.errors.full_messages.each do |msg| -%>
+        <li><%= msg %></li>
+      <% end -%>
+    </ul>
+  <% end -%>
+
+  <p>
+    <%= label_tag :tab_file, "Choose a tab-delimitated file" %>
+    <%= file_field_tag :tab_file %>
+  </p>
+
+  <p><%= submit_tag 'Import' %></p>
+
+<% end -%>
